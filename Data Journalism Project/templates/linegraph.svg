@@ -1,0 +1,68 @@
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="1000" height="500">
+     <style>
+    
+     </style>
+     
+     <text x="250" y="495" text-anchor="middle"font-weight="bold"> Time (year)</text>
+     <text x="50" y="475" text-anchor="middle">1980</text>
+     
+     <text x="150" y="475" text-anchor="middle">1990</text>
+     <text x="250" y="475" text-anchor="middle">2010</text>
+    
+     <text x="350" y="475" text-anchor="middle">2010</text>
+     <text x="450" y="475" text-anchor="middle">2020</text>
+
+     <polyline points="50,450 50,460" fill="none" stroke="black" stroke-width="4"/>
+     <polyline points="150,450 150,460" fill="none" stroke="black" stroke-width="4"/>
+     <polyline points="250,450 250,460" fill="none" stroke="black" stroke-width="4"/>
+     <polyline points="350,450 350,460" fill="none" stroke="black" stroke-width="4"/>
+     <polyline points="450,450 450,460" fill="none" stroke="black" stroke-width="4"/>
+    
+
+     <text text-anchor="middle"  transform="translate(15, 270) rotate(270)" font-weight="bolder" >Percent of Income vs. Percent of Taxes</text>
+     <text x="35" y="455" text-anchor="middle" >0</text>
+     <text x="35" y="375" text-anchor="middle" >10</text>          
+     <text x="35" y="295" text-anchor="middle" >20</text> 
+     <text x="35" y="215" text-anchor="middle" >30</text>    
+     <text x="35" y="135" text-anchor="middle" >40</text> 
+     <text x="35" y="55" text-anchor="middle" >50</text> 
+     
+
+    
+   
+ 
+
+
+    <polyline points="52,50 43,50" fill="none" stroke="black" stroke-width="4"/>
+     <polyline points="50,130 43,130" fill="none" stroke="black" stroke-width="4"/>
+     <polyline points="50,210, 43, 210" fill="none" stroke="black" stroke-width="4"/>
+     <polyline points="50, 290, 43 ,290" fill="none" stroke="black" stroke-width="4"/>
+     <polyline points="50, 370, 43 ,370" fill="none" stroke="black" stroke-width="4"/>
+     <polyline points="50, 450, 43 ,450" fill="none" stroke="black" stroke-width="4"/>
+
+     <text x="250" y="30" text-anchor="middle" font-weight="bolder">Percentage of US Income Taxes Paid vs. Percent of US Income Earned by the {{zip_percentile}} Over Time</text> 
+     <text x="530" y="150" text-anchor="middle" font-weight="bolder" font-size="small">Percent of US taxes paid</text>
+     <rect class="legend" x="630" y="135" width="30" height="20" fill='red' /> 
+     <text x="555" y="180" text-anchor="middle" font-weight="bolder" font-size="small">Percent of US AGI</text>
+     <rect class="legend" x="630" y="165" width="30" height="20" fill='lightgreen' />
+    
+   {% for point in taxes_paid_endpoints %}
+    {% if point is defined %}
+        {% set y1 = 450 - (8 * (point[0] )) %}
+        {% set y2 = 450 - (8 * (point[1] )) %}
+        <polyline class="line taxespaid"   points="{{ 50 + loop.index0 * 10}},{{ y1 }} {{ 50 + (loop.index0 + 1) * 10 }},{{ y2 }}"/>
+    {% endif %}
+{% endfor %}
+
+  {% for point in shares_endpoints %}
+    {% if point is defined %}
+        {% set y1 = 450 - (8 * (point[0] )) %}
+        {% set y2 = 450 - (8 * (point[1] )) %}
+        <polyline class="line AGIshare"   points="{{ 50 + loop.index0 * 10}},{{ y1 }} {{ 50 + (loop.index0 + 1) * 10 }},{{ y2 }}"/>
+    {% endif %}
+{% endfor %}
+    
+<polyline points="50,50 50, 450, 462,450 " fill="none" stroke="black" stroke-width="4"/>
+</svg>
+

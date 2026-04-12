@@ -1,0 +1,77 @@
+
+h6{
+  border-style: solid;
+  border-width: 1px;
+  background-color: white;
+}
+
+.container-fluid{
+  border-style: solid;
+  border-width: 1px;
+}
+
+h1{
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: small;
+}
+#introduction{
+  color: darkblue;
+  font-weight: Bolder;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.nowrap {
+  white-space: nowrap ;
+}
+#I{
+  color:gold;
+  font-weight: bolder;
+}
+h5{
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: small;
+}
+
+.font {
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: small;
+}
+
+#universal:hover {
+  stroke: yellow; 
+}
+
+.line {
+  stroke: black;
+  stroke-width: 2;
+  
+}
+
+.highlight{
+  stroke: yellow;
+  fill:yellow 
+}
+
+.legend{
+  stroke-width: 2;
+  stroke:white
+}
+
+
+
+.AGIshare{
+  stroke:lightgreen
+}
+.taxespaid{
+  stroke:red
+}
+
