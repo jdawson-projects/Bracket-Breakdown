@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bracket Breakdown – About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="about">
+  <div id="site-nav"></div>
+
+  <main class="page">
+    <div class="card-box about">
+      <h2 id="introduction">Introduction</h2>
+      <p class="lead">Of all the different kinds of taxes in America (there are many), income tax is the largest source of funding of the United States' Government; income taxes account for over 40% of the total taxes that the Government collects each year.</p>
+      <p class="lead">Most Americans hold strong views about the tax system. Some Republicans think that a flat tax of 10% across all tax brackets is most fair. Many Social Democrats want increased tax rates and a new annual wealth tax on a person's net worth. There are also people in the middle who have mixed opinions about the current system, but don't want any drastic change.</p>
+      <p class="lead">Although many people hold such strong views, most people do not know the true figures. Unfortunately, this means that many people have formed their opinion based on misleading headlines or based on what they have been told by others. This website seeks to present the true figures in a simple way so that more people can form an opinion based on facts instead of headlines.</p>
+      <p class="lead">This website presents different income statistics for the median earner in each zip code in New York City. New York City is one of the regions of great wealth inequality within the United States.</p>
+      <p class="lead">Someone's AGI (Adjusted Gross Income) is their earnings minus their deductions.</p>
+      <p class="lead">This website does not endorse any particular view.</p>
+
+      <h3 class="section-title">Data Cleansing Pipeline</h3>
+      <ol>
+        <li>Downloaded CSVs from <a href="https://taxfoundation.org/data/all/federal/latest-federal-income-tax-data-2024/">taxfoundation.org</a>.</li>
+        <li>Cleansed unneeded rows in Google Sheets and downloaded cleansed CSVs.</li>
+        <li>Converted cleansed CSVs into JSON objects with <a href="https://github.com/jdawson-projects/Bracket-Breakdown/blob/main/Data%20Journalism%20Project/data/format_data.py">format_data.py</a>.</li>
+      </ol>
+
+      <h3 class="section-title">Prototypes</h3>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <img src="assets/img/prototype-1.jpg" class="img-fluid" alt="Prototype 1: hand-drawn sketch of the zip-code (micro) page with an income summary box and two line graphs" loading="lazy">
+        </div>
+        <div class="col-md-6">
+          <img src="assets/img/prototype-2.jpg" class="img-fluid" alt="Prototype 2: hand-drawn sketch of the NYC map (macro) page with a legend of income brackets" loading="lazy">
+        </div>
+      </div>
+
+      <p class="lead mt-3">I originally started out with thousands of data points in different categories from decades of data collection. In order to prioritize simplicity and readability, I used an infographic map for the macro page to tell a broad story, and I used multiple different charts and line graphs for the micro pages to give supporting details to the overall broader story.
+      I changed my original design by making a better infographic according to the feedback I received to increase readability and simplicity.</p>
+
+      <h3 class="section-title">About this version</h3>
+      <p>The original site was a Python/Flask app, which GitHub Pages can't run. This version rebuilds the same pages as a static site (HTML, CSS and JavaScript reading the same JSON data), with a few fixes: hover tooltips and click-through on the map, a searchable zip-code menu, a redrawn historical line chart with correct axis labels, corrected zip-code counts, and layouts that work on phones. The original Flask code is preserved in the <a href="https://github.com/jdawson-projects/Bracket-Breakdown/tree/main/Data%20Journalism%20Project">Data Journalism Project</a> folder.</p>
+
+      <div id="site-footer"></div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/common.js"></script>
+</body>
+</html>
