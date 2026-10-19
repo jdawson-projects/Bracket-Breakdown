@@ -1,0 +1,233 @@
+/* Bracket Breakdown — static site styles */
+
+:root {
+  --water: #cfe6f2;
+  --card: #ffffff;
+  --ink: #1d2733;
+  --ink-2: #4a5866;
+  --muted: #6b7885;
+  --rule: #d5dde4;
+  --grid: #e7ecf0;
+  --accent: #123c69;
+  --taxes: #c8321f;
+  --agi: #1f8a5b;
+  --no-data: rgb(184, 200, 216);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--water);
+  color: var(--ink);
+  font-family: "Comfortaa", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+a { color: var(--accent); }
+
+/* ---------- navbar (keeps the original Bootstrap layout) ---------- */
+.navbar {
+  border-bottom: 1px solid var(--rule);
+  background: #f8f9fa;
+}
+.navbar-brand { font-weight: 700; color: var(--ink) !important; }
+.zip-menu {
+  max-height: 60vh;
+  overflow-y: auto;
+  min-width: 14rem;
+  padding-top: 0;
+}
+.zip-menu .search-row {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: .5rem;
+  border-bottom: 1px solid var(--rule);
+  z-index: 1;
+}
+.zip-menu .zip-item a { text-decoration: none; display: block; color: var(--ink); }
+.zip-menu .zip-item a:hover { color: var(--accent); }
+.zip-menu .zip-item small { color: var(--muted); }
+
+/* ---------- layout ---------- */
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.card-box {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin: 18px 0;
+}
+
+h1.page-title {
+  font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+.subtitle { color: var(--ink-2); margin: 0 0 12px; }
+.hint { color: var(--muted); font-size: 13px; }
+
+h2, h3, h4 { font-weight: 700; }
+.headline { font-size: clamp(1.05rem, 2vw, 1.35rem); line-height: 1.55; font-weight: 600; }
+.section-title { font-size: 1.1rem; margin: 6px 0 12px; }
+.callout { font-size: 1rem; font-weight: 600; margin: 10px 0; }
+
+/* ---------- map page ---------- */
+.map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .map-layout { grid-template-columns: 1fr; }
+}
+
+.map-wrap { position: relative; }
+.zipmap { width: 100%; height: auto; display: block; }
+.zipmap path {
+  stroke: rgba(29, 39, 51, .45);
+  stroke-width: .5;
+  stroke-linejoin: round;
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.zipmap path.no-data { cursor: default; }
+.zipmap .highlight {
+  fill: none;
+  stroke: #111;
+  stroke-width: 2.2;
+  pointer-events: none;
+}
+.zipmap.dimmed path:not(.active) { opacity: .45; }
+
+.legend { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+.legend-title { font-weight: 700; margin-bottom: 6px; }
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  cursor: default;
+}
+.legend li:hover { background: #eef4f8; }
+.swatch {
+  width: 26px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, .15);
+  flex: none;
+}
+
+.tooltip-box {
+  position: absolute;
+  pointer-events: none;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .12);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .1s, transform .1s;
+  z-index: 10;
+}
+.tooltip-box.show { opacity: 1; transform: none; }
+.tooltip-box .tt-zip { font-weight: 700; }
+.tooltip-box .tt-muted { color: var(--muted); }
+.tooltip-box .tt-row { display: flex; align-items: center; gap: 6px; }
+.tooltip-box .tt-key { width: 10px; height: 3px; border-radius: 2px; flex: none; }
+
+.stat-list { margin: 8px 0 14px; padding-left: 1.2rem; }
+.stat-list li { margin: 2px 0; }
+
+/* ---------- zip page ---------- */
+.zip-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 20px;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .zip-hero { grid-template-columns: 1fr; }
+  .zip-hero .locator { max-width: 260px; }
+}
+.locator .zipmap path { cursor: default; fill: #e3e8ec; stroke: #fff; stroke-width: .6; }
+.locator figcaption { font-size: 12px; color: var(--muted); text-align: center; }
+
+.pill {
+  display: inline-block;
+  background: #eef4f8;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 1px 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pies {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 700px) { .pies { grid-template-columns: 1fr; } }
+.pies img { width: 100%; height: auto; display: block; }
+
+.chart-wrap { position: relative; }
+.chart-wrap svg { max-width: 100%; height: auto; display: block; overflow: visible; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; margin: 0 0 4px; }
+.chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.chart-legend i { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+.axis text { fill: var(--muted); font-size: 12px; }
+.axis-title { fill: var(--ink-2); font-size: 12px; font-weight: 700; }
+.gridline { stroke: var(--grid); stroke-width: 1; }
+.baseline { stroke: #9aa7b2; stroke-width: 1; }
+.series { fill: none; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.end-label { font-size: 12px; font-weight: 700; fill: var(--ink-2); }
+.crosshair { stroke: #8795a1; stroke-width: 1; stroke-dasharray: 3 3; }
+
+details.data-table { margin-top: 10px; font-size: 13px; }
+details.data-table summary { cursor: pointer; color: var(--accent); }
+details.data-table table { border-collapse: collapse; margin-top: 8px; width: 100%; max-width: 420px; }
+details.data-table th, details.data-table td { padding: 3px 8px; border-bottom: 1px solid var(--grid); text-align: right; }
+details.data-table th:first-child, details.data-table td:first-child { text-align: left; }
+.table-scroll { max-height: 280px; overflow-y: auto; }
+
+/* ---------- about page (keeps the original look) ---------- */
+#introduction {
+  color: darkblue;
+  font-weight: bolder;
+  font-family: "Courier New", Courier, monospace;
+}
+.about .lead { font-size: 1.02rem; font-weight: 400; }
+.about img { border-radius: 6px; border: 1px solid var(--rule); }
+
+/* ---------- footer ---------- */
+footer.site-footer {
+  font-size: 13px;
+  color: var(--ink-2);
+  border-top: 1px solid var(--rule);
+  margin-top: 24px;
+  padding-top: 14px;
+}
+footer.site-footer p { margin: 0 0 8px; }
+footer .project-note {
+  background: #f4f8fb;
+  border-left: 3px solid var(--accent);
+  padding: 8px 12px;
+  border-radius: 0 6px 6px 0;
+}
+
+.empty-state { text-align: center; padding: 30px 10px; }
